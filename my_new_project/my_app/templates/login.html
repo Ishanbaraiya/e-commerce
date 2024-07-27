@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+        <section class="container1 forms">
+            <div class="form login">
+                <div class="form-content">
+                    <header class="header1">Login</header>   
+                    <form action="{% url 'check_login' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="field input-field">
+                            <input type="email" placeholder="Email" name="email" class="input">
+                        </div>
+
+                        <div class="field input-field">
+                            <input type="password" placeholder="Password" name="password" class="password">
+                            <i class='bx bx-hide eye-icon'></i>
+                        </div>
+
+                        <div class="form-link">
+                            <a href="{% url 'otp' %}" class="forgot-pass">Forgot password?</a>
+                            <br>
+                            {% if massages_for_login %} 
+                               <p style="color: red; margin-top: 5px;" > {{massages_for_login}} </p>
+                            {% endif %} 
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <p style="color: green; margin-top: 5px;">{{ message }}</p>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+
+                        <div class="field button-field">
+                            <button type="submit">Login</button>
+                        </div>
+                    </form>
+
+                    <div class="form-link">
+                        <span>Don't have an account? <a href="{% url 'signups' %}" class="signup-link">Signup</a></span>
+                    </div>
+                </div>
+
+                <div class="line"></div>
+
+                <div class="media-options">
+                    <a href="#" class="field facebook">
+                        <i class='bx bxl-facebook facebook-icon'></i>
+                        <span>Login with Facebook</span>
+                    </a>
+                </div>
+
+                <div class="media-options">
+                    <a href="#" class="field google">
+                        <i class='bx bxl-google google-icon' ></i>
+                        <span>Login with Google</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+{% endblock %}

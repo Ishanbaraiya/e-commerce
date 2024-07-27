@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+        <section class="container1 forms">
+            <div class="form login">
+                <div class="form-content">
+                    <header class="header1">OTP</header>   
+                    <form action="{% url 'otp' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="field input-field">
+                            <input type="email" placeholder="Email" name="email" class="input">
+                        </div>
+
+                        <div class="form-link">
+                            {% if massages_for_login %} 
+                               <p style="color: red; margin-top: 5px;" > {{massages_for_login}} </p>
+                            {% endif %}    
+                        </div>
+
+                        <div class="field button-field">
+                            <button type="submit">Send OTP</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </section>
+{% endblock %}
